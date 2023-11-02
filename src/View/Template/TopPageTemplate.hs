@@ -19,6 +19,7 @@ data Context = Context
   , locale :: Text
   , description :: Text
   , arList :: [Article]
+  , articleDir :: Text
   }
 
 render :: Monad m => Context -> HtmlT m ()
@@ -52,7 +53,7 @@ render ctx =
     property_ = makeAttributes "property"
     articleDiv :: Monad m => Article -> HtmlT m ()
     articleDiv ar = do
-      a_ [href_ (ctx.baseUrl <> "/entry/" <> EA.slug ar)] $ do
+      a_ [href_ (ctx.baseUrl <> "/" <> ctx.articleDir <> "/" <> EA.slug ar)] $ do
         div_ $ span_ $ toHtml $ EA.title ar
         div_ $ span_ $ toHtml $ EC.name $ category ar
       

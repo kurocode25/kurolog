@@ -1,5 +1,7 @@
+{-# LANGUAGE OverloadedStrings #-}
 module View.TopPageView where
 
+import Data.Maybe
 import Entity.Article
 import View.Template.TopPageTemplate as TMP
 import Lucid
@@ -25,5 +27,6 @@ instance ToHtml TopPageView where
         , TMP.locale = C.locale ext
         , TMP.description = C.description ext
         , TMP.arList = ar
+        , TMP.articleDir = fromMaybe "posts" $ C.articleDir ext
         }
 
