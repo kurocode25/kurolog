@@ -1,0 +1,173 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.35.0.
+--
+-- see: https://github.com/sol/hpack
+
+name:           kurolog
+version:        0.1.0
+description:    Please see the README on GitHub at <https://github.com/kurocode25/kurolog#readme>
+homepage:       https://github.com/kurocode25/kurolog#readme
+bug-reports:    https://github.com/kurocode25/kurolog/issues
+author:         Kuro_CODE25
+maintainer:     kuro.code25@gmail.com
+copyright:      2023 Kuro_CODE25
+license:        MIT
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+
+source-repository head
+  type: git
+  location: https://github.com/kurocode25/kurolog
+
+library
+  exposed-modules:
+      Action
+      Auth
+      Command.HashPass
+      Command.MakeUser
+      Command.Migrate
+      Config
+      Database.Entity.Article
+      Database.Entity.Category
+      Database.Entity.DBPage
+      Database.Entity.DBUser
+      Database.Entity.Tag
+      Database.Sql
+      Entity.Article
+      Entity.ArticleList
+      Entity.AuthRequest
+      Entity.Category
+      Entity.DetailArticle
+      Entity.Feeder
+      Entity.Page
+      Entity.Pagination
+      Entity.RequestArticle
+      Entity.ResultResponse
+      Entity.Sitemap
+      Entity.Tag
+      Entity.User
+      Entry
+      Mapper
+      Repository
+      Router
+      Servant.AtomFeed
+      Servant.HTML.Lucid2
+      Utils
+      View.ArticleView
+      View.Class
+      View.PageView
+      View.Template.ArticleTemplate
+      View.Template.PageTemplate
+      View.Template.TopPageTemplate
+      View.TopPageView
+  other-modules:
+      Paths_kurolog
+  hs-source-dirs:
+      src
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
+  build-depends:
+      aeson
+    , base >=4.7 && <5
+    , bytestring
+    , cryptonite
+    , dhall
+    , feed
+    , http-media
+    , http-types
+    , lucid2
+    , mmark
+    , postgresql-migration
+    , postgresql-simple
+    , resource-pool
+    , servant-server
+    , servant-xml
+    , text
+    , time
+    , transformers
+    , unordered-containers
+    , uuid-types
+    , wai
+    , wai-cors
+    , warp
+    , xml-conduit
+    , xmlbf
+  default-language: Haskell2010
+
+executable kurolog
+  main-is: Main.hs
+  other-modules:
+      Paths_kurolog
+  hs-source-dirs:
+      app
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      aeson
+    , base
+    , bytestring
+    , cryptonite
+    , dhall
+    , feed
+    , http-media
+    , http-types
+    , kurolog
+    , lucid2
+    , mmark
+    , postgresql-migration
+    , postgresql-simple
+    , resource-pool
+    , servant-server
+    , servant-xml
+    , text
+    , time
+    , transformers
+    , unordered-containers
+    , uuid-types
+    , wai
+    , wai-cors
+    , warp
+    , xml-conduit
+    , xmlbf
+  default-language: Haskell2010
+
+test-suite kurolog-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_kurolog
+  hs-source-dirs:
+      test
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      aeson
+    , base
+    , bytestring
+    , cryptonite
+    , dhall
+    , feed
+    , hspec
+    , hspec-wai
+    , hspec-wai-json
+    , http-media
+    , http-types
+    , kurolog
+    , lucid2
+    , mmark
+    , postgresql-migration
+    , postgresql-simple
+    , resource-pool
+    , servant-server
+    , servant-xml
+    , text
+    , time
+    , transformers
+    , unordered-containers
+    , uuid-types
+    , wai
+    , wai-cors
+    , warp
+    , xml-conduit
+    , xmlbf
+  default-language: Haskell2010
