@@ -1,6 +1,6 @@
 Kurolog - Personal Blog Backend System
 =======
-日本語版は[README\_ja.md]()をお読みください。
+日本語版は[README\_ja.md](https://github.com/kurocode25/kurolog/blob/main/README_ja.md)をお読みください。
 
 ## About this project
 Kurolog is a personal blog backend system written in [Haskell](https://www.haskell.org/). In addition to providing an API, it also has the ability to dynamically generate sitemaps and Atom feeds. It is intended to be used in combination with a front end made with React, Vue, etc.

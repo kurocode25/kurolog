@@ -1,6 +1,6 @@
 Kurolog
 =======
-This document is Japanese ver. of [README.md]()
+This document is Japanese ver. of [README.md](https://github.com/kurocode25/kurolog/blob/main/README.md)
 
 ## このプロジェクトについて
 Kurologは[Haskell](https://www.haskell.org/)で書かれた個人向けブログバックエンドシステムです。APIを提供する他、サイトマップやAtomフィードを動的に生成する機能を持っています。ReactやVue等で作られたフロントエンドと組み合わせて使うことを想定しています。
