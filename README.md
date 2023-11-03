@@ -24,24 +24,25 @@ stack build
 ```
 
 ## setting file
-### conf.dhall file
-Kurolog uses the `conf.dhall` file written in [dhall language](https://dhall-lang.org/) as a configuration file. Please change the file name of conf.dhall.sample and overwrite it.
+### config.dhall file
+Kurolog uses the `config.dhall` file written in [dhall language](https://dhall-lang.org/) as a configuration file. Please copy `sample/config.dhall` to `/etc/kurolog/` and edit it.
 
 ```bash
-mv conf.dhall.sample conf.dhall
+sudo mkdir -p /etc/kurolog
+sudo cp sample/config.dhall /etc/kurolog/
 ```
 
 Use this file to configure database connection settings, blog title, etc.
 
-### Location of conf.dhall file
-The default location for this file is `/etc/kurolog/conf.dhall`. However, you can also place it anywhere you like and specify the path when running the command.
+### Location of config.dhall file
+The default location for this file is `/etc/kurolog/config.dhall`. However, you can also place it anywhere you like and specify the path when running the command.
 
 ## Execution environment
 ### Development environment
 If you want to run it in a local environment, run the following command.
 
 ```bash
-stack run -- serve [path/to/conf.dhall]
+stack run -- serve [path/to/config.dhall]
 ```
 
 ### Production environment
@@ -99,25 +100,25 @@ An example of command execution is shown below.
 + Started providing API
 
 ```bash
-kurolog serve [path/to/conf.dhall]
+kurolog serve [path/to/config.dhall]
 ```
 
 + User creation
 
 ```bash
-kurolog createuser [path/to/conf.dhall]
+kurolog createuser [path/to/config.dhall]
 ```
 
 + Initialize database
 
 ```bash
-kurolog initdb [path/to/conf.dhall]
+kurolog initdb [path/to/config.dhall]
 ```
 
 + Database migration
 
 ```bash
-kurolog migrate path/to/migration_dir [path/to/conf.dhall]
+kurolog migrate path/to/migration_dir [path/to/config.dhall]
 ```
 
 + Display help screen

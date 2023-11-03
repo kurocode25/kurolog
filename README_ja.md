@@ -1,6 +1,6 @@
 Kurolog
 =======
-This document is Japanese ver. of [README.md](https://github.com/kurocode25/kurolog/blob/main/README.md)
+This document is Japanese ver. of [README.md](https://github.com/kurocode25/kurolog/#readme)
 
 ## このプロジェクトについて
 Kurologは[Haskell](https://www.haskell.org/)で書かれた個人向けブログバックエンドシステムです。APIを提供する他、サイトマップやAtomフィードを動的に生成する機能を持っています。ReactやVue等で作られたフロントエンドと組み合わせて使うことを想定しています。
@@ -24,24 +24,25 @@ stack build
 ```
 
 ## 設定ファイル
-### conf.dhallファイル
-Kurologは設定ファイルとして[dhall言語](https://dhall-lang.org/)で書かれた`conf.dhall`ファイルを使います。conf.dhall.sampleのファイル名を変更して上書きしてください。
+### config.dhallファイル
+Kurologは設定ファイルとして[dhall言語](https://dhall-lang.org/)で書かれた`config.dhall`ファイルを使います。`sample/config.dhall`を`/etc/kurolog/`ディレクトリ配下に配置して編集をして下さい。
 
 ```bash
-mv conf.dhall.sample conf.dhall
+sudo mkdir -p /etc/kurolog
+sudo cp sample/config.dhall /etc/kurolog
 ```
 
 このファイルでデータベース接続設定やブログのタイトルなどを設定します。
 
-### conf.dhallファイルの設置場所
-このファイルのデフォルトの配置場所は`/etc/kurolog/conf.dhall`です。しかしお好みの場所に設置し、コマンド実行時にパスを指定することもできます。
+### config.dhallファイルの設置場所
+このファイルのデフォルトの配置場所は`/etc/kurolog/config.dhall`です。しかしお好みの場所に設置し、コマンド実行時にパスを指定することもできます。
 
 ## 実行環境ごとの実行方法
 ### 開発環境
 ローカル環境で実行する場合は以下のコマンドを実行します。
 
 ```bash
-stack run -- serve [path/to/conf.dhall]
+stack run -- serve [path/to/config.dhall]
 ```
 
 ### 本番環境
@@ -99,25 +100,25 @@ __コマンド一覧__
 + APIの提供を開始
 
 ```bash
-kurolog serve [path/to/conf.dhall]
+kurolog serve [path/to/config.dhall]
 ```
 
 + ユーザー作成
 
 ```bash
-kurolog createuser [path/to/conf.dhall]
+kurolog createuser [path/to/config.dhall]
 ```
 
 + データベースを初期化
 
 ```bash
-kurolog initdb [path/to/conf.dhall]
+kurolog initdb [path/to/config.dhall]
 ```
 
 + データベースのマイグレーション
 
 ```bash
-kurolog migrate path/to/migration_dir [path/to/conf.dhall]
+kurolog migrate path/to/migration_dir [path/to/config.dhall]
 ```
 
 + ヘルプ画面の表示
