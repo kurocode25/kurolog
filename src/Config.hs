@@ -82,7 +82,7 @@ setConnectInfo dbinfo =
     }
 
 defaultConfFilePath :: String
-defaultConfFilePath = "/etc/kurolog/conf.dhall"
+defaultConfFilePath = "/etc/kurolog/config.dhall"
 
 type CorsOrigins = Maybe ([Origin], Bool)
 
