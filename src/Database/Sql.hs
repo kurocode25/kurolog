@@ -2,15 +2,56 @@
 module Database.Sql where
 
 import Database.PostgreSQL.Simple
-import qualified Database.Entity.Article as A
 
 data QFlag = FId | FSlug
 data Status = All | Public | UnPublic
 
 {- SQL for postgreSQL -}
 
--- 記事情報取得のベースSQL
+-- | SQLBuilder : SQL qeury builder
+data SQLBuilder = SQL { main :: Query
+                      , where' :: Maybe Query
+                      , groupBy :: Maybe Query
+                      , having :: Maybe Query
+                      , orderBy :: Maybe Query
+                      , limit :: Maybe Query
+                      } deriving Show
 
+-- | convert SQL to Query
+toQuery :: SQLBuilder -> Query
+toQuery sql =
+  main sql <> toPhrase (where' sql)
+           <> toPhrase (groupBy sql)
+           <> toPhrase (having sql)
+           <> toPhrase (orderBy sql)
+           <> toPhrase (limit sql)
+  where
+    toPhrase :: Maybe Query -> Query
+    toPhrase (Just q) = " " <> q
+    toPhrase Nothing = ""
+
+emptyBuilder :: SQLBuilder
+emptyBuilder = SQL "" Nothing Nothing Nothing Nothing Nothing
+
+totalArticleCountSQL :: SQLBuilder
+totalArticleCountSQL = emptyBuilder
+  { main = "select count(*) \
+      \from articles as A inner join categories as C on A.category_id = C.id"
+  }
+
+articleSQL :: SQLBuilder
+articleSQL = emptyBuilder
+  { main = 
+      "select A.id, A.slug, A.title, A.released_at, A.created_at, A.updated_at\
+      \, A.status, A.image, A.markdown, A.category_id, C.slug, C.name, C.created_at \
+      \, C.updated_at, C.last_posted_at \
+      \from articles as A inner join categories as C \
+      \on a.category_id = C.id \
+      \inner join articles_tags as AT on A.id = AT.article_id \
+      \inner join tags as T on at.tag_id = T.id"
+  }
+
+-- 記事情報取得のベースSQL
 getTotalArticleCountSql :: Query
 getTotalArticleCountSql =
   "select \
