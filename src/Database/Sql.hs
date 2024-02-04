@@ -209,7 +209,7 @@ insertTagSql =
 
 updateTagSql :: Query
 updateTagSql =
-  "update tags set slug = ?, name = ?, updated_at = ? \
+  "update tags set slug = ?, name = ?, updated_at = now() \
   \where id = ?"
 
 -- | Delete Tags SQL
